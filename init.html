@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="/styles/bootstrap.min.css">
+
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="/styles/bootstrap-theme.min.css">
+
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="/styles/jquery.min.js"></script>
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="/styles/bootstrap.min.js"></script>
+
+	<!-- Import easyUI -->
+	<link rel="stylesheet" type="text/css" href="statics/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="statics/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="statics/demo.css">
+	<script type="text/javascript" src="statics/jquery.min.js"></script>
+	<script type="text/javascript" src="statics/jquery.easyui.min.js"></script>
+
+	<style>
+		body {
+			width: 650px;
+			height: 700px;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- menu -->
+	<div id="mm"></div>
+	<ul id="myTab" class="nav nav-tabs">
+		<!--<li class="active">
+			<a href="#home" data-toggle="tab">
+         在线抓产品
+      </a>
+		</li>-->
+		<li class="active">
+			<a href="#FBA" data-toggle="tab">Amazon FBA订单</a>
+		</li>
+		<li>
+			<a href="#FBAStock" data-toggle="tab">FBA库存明细</a>
+		</li>
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<!--<div class="tab-pane fade in active" id="home">
+			<div class="container">
+				<div class="row">
+					<br/>
+				</div>
+				<div class="row">
+					<table class="table table-bordered">
+						<tr>
+							<td>Platform</td>
+							<td colspan="3" id="platform"></td>
+						</tr>
+						<tr>
+							<td>Listing name</td>
+							<td colspan="3" id="listing_name"></td>
+						</tr>
+						<tr>
+							<td>Image</td>
+							<td colspan="3" id="listing_image"></td>
+						</tr>
+						<tr>
+							<td colspan="4" id="listing_images"></td>
+						</tr>
+						<tr>
+							<td>price</td>
+							<td id="listing_price"></td>
+							<td>watching</td>
+							<td id="listing_watching"></td>
+						</tr>
+						<tr>
+							<td>location</td>
+							<td colspan="3" id="listing_location"></td>
+						</tr>
+						<tr>
+							<td colspan="4" align="">
+								<a href="#" class="btn btn-primary btn-xs">加入监控队列</a>
+								<a href="#" class="btn btn-danger btn-xs">立即刊登到我的店铺</a>
+							</td>
+						</tr>
+					</table>
+
+
+				</div>
+			</div>
+		</div>-->
+		<div class="tab-pane fade in active" id="FBA">
+			<div style="margin-top: 40px" class="alert alert-info">本操作将完成FBA订单报告从Amazon系统到BOSS系统之间的传递</div>
+			<div style="margin-bottom: 0px;text-align: right">
+				<button id="FBA_btn" type="button" class="btn btn-primary">立即同步FBA订单报告</button>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="FBAStock">
+			<div style="margin-top: 40px" class="alert alert-info">本操作将完成FBA库存明细从Amazon系统到BOSS系统之间的传递</div>
+			<div style="margin-bottom: 0px;text-align: right">
+				<button id="Stock_btn" type="button" class="btn btn-primary">立即同步FBA库存明细</button>
+				<!--<p><label class="checkbox-inline"><input  id="StockFree" type="checkbox">手动选同步文件</label></p>-->
+			</div>
+		</div>
+	</div>
+	<!--<div id="tab" class="easyui-tabs" title="店长助手" fit="true">
+		<div title="Amazon FBA订单">
+			<div class="tab-pane fade in active" id="FBA">
+				<div style="margin-top: 40px" class="alert alert-info">本操作将完成FBA订单报告从Amazon系统到BOSS系统之间的传递</div>
+				<div style="margin-bottom: 0px;text-align: right">
+					<button id="FBA_btn" type="button" class="btn btn-primary">立即同步FBA订单报告</button>
+				</div>
+			</div>
+		</div>
+		<div title="在线抓产品">
+			<div class="container">
+				<div class="row">
+					<br/>
+				</div>
+				<div class="row">
+					<table class="table table-bordered">
+						<tr>
+							<td>Platform</td>
+							<td colspan="3" id="platform"></td>
+						</tr>
+						<tr>
+							<td>Listing name</td>
+							<td colspan="3" id="listing_name"></td>
+						</tr>
+						<tr>
+							<td>Image</td>
+							<td colspan="3" id="listing_image"></td>
+						</tr>
+						<tr>
+							<td colspan="4" id="listing_images"></td>
+						</tr>
+						<tr>
+							<td>price</td>
+							<td id="listing_price"></td>
+							<td>watching</td>
+							<td id="listing_watching"></td>
+						</tr>
+						<tr>
+							<td>location</td>
+							<td colspan="3" id="listing_location"></td>
+						</tr>
+						<tr>
+							<td colspan="4" align="">
+								<a href="#" class="btn btn-primary btn-xs">加入监控队列</a>
+								<a href="#" class="btn btn-danger btn-xs">立即刊登到我的店铺</a>
+							</td>
+						</tr>
+					</table>
+
+
+				</div>
+			</div>
+		</div>
+	</div>-->
+	<script type="text/javascript" src="init.js"></script>
+</body>
+
+</html>
