@@ -33,15 +33,29 @@ FbaObj.SyncFbaOrders=function(url,bUrl){
     FbaObj.bossUrl=bUrl;
     FbaObj.SignInEmail=url.SignInEmail;
     chrome.extension.sendRequest({result: FbaObj.requestCode.Progress});
-    //发送请求生成最新数据
-    /*$.ajax({
-        type: url.ajaxOption.method,
-        url: FbaObj.urlPro+FbaObj.host+url.genurl,
-        data:url.ajaxOption.params,
-        dataType: url.ajaxOption.type
-    });*/
-    //10秒后抓取页面下载链接并下载
-    setTimeout(function() {
+    var arrLink=$(".buttonImage[name=Download]");
+    if(arrLink==null)
+    {
+        url.regex=/<a class="buttonImage" name="下载"(.|\n)*?<\/a>/g;//日本站
+        arrLink = url.regex && data.match(url.regex);
+    }
+    console.log(arrLink);
+    if (arrLink !== null && arrLink.length > 0) {
+        FbaObj.fileCount=arrLink.length;
+        $.each(arrLink, function () {
+                //var downUrl = this.match(url.regex1)[0].replace(/&amp;/g, "&");
+                var downUrl=$(this).attr("href");
+                downUrl=downUrl.replace(/&amp;/g, "&");
+                FbaObj.SyncFbaOrder(downUrl, FbaObj.bossUrl);
+            }
+        )
+    }
+    else
+    {
+        chrome.extension.sendRequest({result: FbaObj.requestCode.SingleError,code:"",msg:"未获取到下载地址"});
+        chrome.extension.sendRequest({result: FbaObj.requestCode.AllComplete});
+    }
+    /*setTimeout(function() {
         var promise = $.ajax({
             type: 'get',
             url: FbaObj.urlPro + FbaObj.host + url.url,
@@ -76,7 +90,7 @@ FbaObj.SyncFbaOrders=function(url,bUrl){
             chrome.extension.sendRequest({result: FbaObj.requestCode.SingleError,code:data.statusText,msg:data.status});
             chrome.extension.sendRequest({result: FbaObj.requestCode.AllComplete});
         });
-    },10000);
+    },10000);*/
 };
 FbaObj.SyncFbaOrder=function(amazonUrl,bossUrl) {
     var fileName=amazonUrl.match(/(?!fileName=)(\d{4}.*\..{3})/)[0];
