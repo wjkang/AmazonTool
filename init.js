@@ -60,7 +60,7 @@ $("#listing_images").html(htmls);*/
     console.log(ajaxParams);
     //线上配置
     var amazonUrl = '{"name":"订单明细","SignInEmail":"' + email + '","genurl":"/gp/payments-account/generate-date-range-report.html","url":"/gp/payments-account/date-range-reports.html/ref=ag_xx_cont_xx","ajaxOption":{"method":"post","params":"' + ajaxParams + '","type":"html"},"regex":/<a class="buttonImage" name="Download"(.|\\n)*?<\\/a>/g,"regex1":/(?!href=")(http.*\\d)/g}';
-    var bossUrl = "https://admin.sjlpj.cn/AmazonFbaBill/UploadBillFile";
+    var bossUrl = "https://.../AmazonFbaBill/UploadBillFile";
     //测试配置
     //var amazonUrl='{"name":"订单明细","genurl":"/gp/payments-account/generate-date-range-report.html","url":"/AmazonPage/Payments%20-%20Amazon%20Seller%20Central.html","ajaxOption":{"method":"post","params":"startDate=1464796800&endDate=1464969599&timeRangeType=Custom&reportType=Transaction&startDateDay=2&startDateMonth=6&startDateYear=2016&endDateDay=3&endDateMonth=6&endDateYear=2016&generationDate=1464969600","type":"html"},"regex":/<a class="buttonImage" name="Download"(.|\\n)*?<\\/a>/g,"regex1":/(?!href=")(http.*\\d)/g}';
     //var bossUrl="http://localhost:2252/AmazonFbaBill/UploadBillFile";

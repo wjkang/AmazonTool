@@ -29,11 +29,13 @@ FbaObj.SyncFbaOrders=function(url,bUrl){
     //是否日本站
     var isJapanSite=(FbaObj.host.indexOf("jp")>-1)||(FbaObj.host.indexOf("japan")>-1)?true:false;
     FbaObj.MarketPlace=isJapanSite?'A1VC38T7YXB528':FbaObj.MarketPlace;
-
+    if(!FbaObj.MarketPlace){
+        FbaObj.MarketPlace=$("#sc-mkt-switcher-select").val();
+    }
     FbaObj.bossUrl=bUrl;
     FbaObj.SignInEmail=url.SignInEmail;
     chrome.extension.sendRequest({result: FbaObj.requestCode.Progress});
-    var arrLink=$(".buttonImage[name=Download]");
+    var arrLink=$("a[role=button]");
     if(arrLink==null)
     {
         url.regex=/<a class="buttonImage" name="下载"(.|\n)*?<\/a>/g;//日本站
@@ -94,6 +96,9 @@ FbaObj.SyncFbaOrders=function(url,bUrl){
 };
 FbaObj.SyncFbaOrder=function(amazonUrl,bossUrl) {
     var fileName=amazonUrl.match(/(?!fileName=)(\d{4}.*\..{3})/)[0];
+    if(!fileName.indexOf("_Monthly")>-1&&fileName.indexOf("Monthly")>-1) {
+        fileName=fileName.replace("Monthly","_Monthly");
+    }
     var xhr = new XMLHttpRequest();
     xhr.open("GET", amazonUrl, true);
     xhr.responseType = "blob";
