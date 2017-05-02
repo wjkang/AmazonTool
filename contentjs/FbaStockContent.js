@@ -4,6 +4,9 @@ FbaStockObj.CheckboxTpl = '<input type="checkbox" name="StockInsertCheckbox" />'
 FbaStockObj.host = location.host;
 //获取站点
 FbaStockObj.MarketPlace = $("#sc-mkt-switcher-select").val();
+if(!FbaStockObj.MarketPlace){
+    FbaStockObj.MarketPlace = $("#sc-mkt-picker-switcher-select").val();
+}
 FbaStockObj.SignInEmail = "";
 FbaStockObj.urlPro = "https://";
 FbaStockObj.fileCount = 0;
@@ -28,6 +31,14 @@ FbaStockObj.removeCheckbox = function () {
     $("input[type=checkbox][name=StockInsertCheckbox]").remove();
 }
 FbaStockObj.SyncFbaStocks = function () {
+    FbaStockObj.MarketPlace = $("#sc-mkt-switcher-select").val();
+    if(!FbaStockObj.MarketPlace) {
+        FbaStockObj.MarketPlace = $("#sc-mkt-picker-switcher-select").val();
+    }
+    if(FbaStockObj.MarketPlace&&FbaStockObj.MarketPlace.indexOf("marketplaceId")>-1)
+    {
+        FbaStockObj.MarketPlace=FbaStockObj.MarketPlace.match(/.*marketplaceId=(.*)&.*/)[1];
+    }
     //是否日本站
     var isJapanSite = (FbaStockObj.host.indexOf("jp") > -1)||(FbaStockObj.host.indexOf("japan") > -1) ? true : false;
     FbaStockObj.MarketPlace = isJapanSite ? 'A1VC38T7YXB528' : FbaStockObj.MarketPlace;
