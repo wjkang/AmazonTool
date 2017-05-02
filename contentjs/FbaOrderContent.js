@@ -7,6 +7,9 @@ FbaObj.bossUrl="";
 FbaObj.host=location.host;
 //获取站点
 FbaObj.MarketPlace=$("#sc-mkt-switcher-select").val();
+if(!FbaObj.MarketPlace){
+    FbaObj.MarketPlace = $("#sc-mkt-picker-switcher-select").val();
+}
 /*var downLoadLink=$(".drrDocumentGroupTable").find("a[name='Download']");
 $.each(downLoadLink,function(){
     $(this).parent().append("<input type='checkbox'/>");
@@ -26,6 +29,14 @@ FbaObj.requestCode = {
     FBAStockAllComplete:9
 };
 FbaObj.SyncFbaOrders=function(url,bUrl){
+    FbaObj.MarketPlace = $("#sc-mkt-switcher-select").val();
+    if(!FbaObj.MarketPlace) {
+        FbaObj.MarketPlace = $("#sc-mkt-picker-switcher-select").val();
+    }
+    if(FbaObj.MarketPlace&&FbaObj.MarketPlace.indexOf("marketplaceId")>-1)
+    {
+        FbaObj.MarketPlace=FbaObj.MarketPlace.match(/.*marketplaceId=(.*)&.*/)[1];
+    }
     //是否日本站
     var isJapanSite=(FbaObj.host.indexOf("jp")>-1)||(FbaObj.host.indexOf("japan")>-1)?true:false;
     FbaObj.MarketPlace=isJapanSite?'A1VC38T7YXB528':FbaObj.MarketPlace;
@@ -98,6 +109,10 @@ FbaObj.SyncFbaOrder=function(amazonUrl,bossUrl) {
     var fileName=amazonUrl.match(/(?!fileName=)(\d{4}.*\..{3})/)[0];
     if(!fileName.indexOf("_Monthly")>-1&&fileName.indexOf("Monthly")>-1) {
         fileName=fileName.replace("Monthly","_Monthly");
+    }
+    if(fileName.indexOf("Custom")>-1)
+    {
+        fileName=fileName.replace("Custom","_Custom");
     }
     var xhr = new XMLHttpRequest();
     xhr.open("GET", amazonUrl, true);
